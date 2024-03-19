@@ -15,14 +15,15 @@ create table obra (
      ano_publicaco date not null,
      idioma varchar (50),
      classificacao varchar (3),
-     fk_obra_usuario foreign key (id_usario)
+     constraint fk_obra_usuario foreign key (id_usario) references usuarios (id_usuarios)
 
 );
 
 create table autor (
         nacionalidade varchar (20) not null,
         nome_autor varchar (50),
-        id_autor int primary key
+        id_autor int primary key,
+        constraint fk_obra_autor foreign key (isbn) references obra (isbn)
 
 );
 
@@ -30,7 +31,8 @@ create table autor (
 create table editora (
       id_editora int primary key,
       nome_editora varchar (70),
-      cidade varchar (25)
+      cidade varchar (25),
+      constraint fk_editora_obra foreign key (isbn) references obra (isbn)
 
 
 );
